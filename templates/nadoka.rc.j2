@@ -15,7 +15,7 @@ class NADOKA_Config < Nadoka::NDK_ConfigBase
   delay = number.to_f
   delay /= 10.0 while delay > 10.0
 
-  User = "#{Hostname}#{number}"
+  User = "#{Hostname}_#{number}"
   Nick = {{ item.nick }}
 
   Channel_info = {
