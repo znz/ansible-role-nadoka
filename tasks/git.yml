@@ -1,0 +1,3 @@
+---
+- git: dest={{ nadoka_nadoka }} repo=https://github.com/nadoka/nadoka depth=1
+- subversion: dest={{ nadoka_fprog_plugins }} repo=http://www.fprog.org/svn/nadoka-plugins/trunk

@@ -1,2 +1,9 @@
 ---
 # defaults file for znzj.nadoka
+nadoka_root: /opt/nadoka
+nadoka_nadoka: "{{ nadoka_root }}/nadoka"
+nadoka_fprog_plugins: "{{ nadoka_root }}/fprog-nadoka-plugins"
+
+nadoka_packages:
+- git
+- subversion

@@ -1,0 +1,2 @@
+---
+- apt: name={{ nadoka_packages | join(",") }}
