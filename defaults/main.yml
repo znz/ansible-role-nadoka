@@ -12,6 +12,7 @@ nadoka_packages:
 nadoka_user: nadoka
 nadoka_user_uid: 940
 nadoka_group: "{{ nadoka_user }}"
+nadoka_group_gid: "{{ nadoka_user_uid }}"
 
 nadoka_rc:
 - runit_name: "nadoka-rbenv"

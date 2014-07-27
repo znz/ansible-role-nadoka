@@ -11,6 +11,8 @@ nadoka install to `/opt/nadoka`
 
 - `nadoka_user`
 - `nadoka_user_uid`
+- `nadoka_group`
+- `nadoka_group_gid`
 - `nadoka_rc`
 
 ## Dependencies
