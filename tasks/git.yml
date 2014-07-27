@@ -1,3 +1,4 @@
 ---
-- git: dest={{ nadoka_nadoka }} repo=https://github.com/nadoka/nadoka depth=1
+# depth=1 causes "fatal: No names found, cannot describe anything." by "git describe"
+- git: dest={{ nadoka_nadoka }} repo=https://github.com/nadoka/nadoka
 - subversion: dest={{ nadoka_fprog_plugins }} repo=http://www.fprog.org/svn/nadoka-plugins/trunk
