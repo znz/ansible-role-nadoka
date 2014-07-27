@@ -2,3 +2,5 @@
 # tasks file for znzj.nadoka
 - include: packages.yml tags=nadoka,nadoka-packages
 - include: git.yml tags=nadoka,nadoka-git
+- include: user.yml tags=nadoka,nadoka-user
+- include: config.yml tags=nadoka,nadoka-config

@@ -1,0 +1,8 @@
+#!/bin/sh
+exec 2>&1
+cd "$(dirname $0)"
+logger -s -t runsv -- start "$(basename $(pwd))"
+USER=nadoka
+cd "/home/$USER"
+export HOME=$(pwd)
+exec chpst -u :$(id -u $USER):$(id -g $USER) "/home/nadoka/{{ item.runit_name }}/run-nadoka.sh"

@@ -1,0 +1,43 @@
+# vim: set ft=ruby:
+class NADOKA_Config < Nadoka::NDK_ConfigBase
+  Client_server_port = nil
+  Servers = [
+    {
+      :host => '{{ item.host }}',
+      :port => {{ item.port }},
+      :pass => {{ item.pass }},
+      :ssl_params => {{ item.ssl_params }},
+    },
+  ]
+
+  Hostname = Socket.gethostname
+  number = RUBY_VERSION.delete("^0-9").to_i
+  delay = number.to_f
+  delay /= 10.0 while delay > 10.0
+
+  User = "#{Hostname}#{number}"
+  Nick = {{ item.nick }}
+
+  Channel_info = {
+    '#nadoka' => {
+    },
+    '#nadoka_check' => {
+    },
+  }
+
+  require 'tmpdir'
+  Log_dir = Dir.mktmpdir
+
+  Plugins_dir = [
+    '{{ nadoka_fprog_plugins }}',
+    '{{ nadoka_nadoka }}/plugins',
+  ]
+
+  BotConfig << {
+    :name => :Ponger,
+    :ch => /servers/,
+    :pattern => /\Ap[io]ng.?\z/,
+    :reply => "pong #{number}",
+    :delay => delay,
+  }
+end
