@@ -14,10 +14,17 @@ nadoka_user_uid: 940
 nadoka_group: "{{ nadoka_user }}"
 
 nadoka_rc:
-- runit_name: "nadoka-nadoka"
+- runit_name: "nadoka-rbenv"
   host: "nadoka-ccvps.n-z.jp"
   port: 6697
   pass: "'{{ ngircd_password }}'"
   ssl_params: '{ :verify_mode => OpenSSL::SSL::VERIFY_NONE }'
   ruby_command: "{{ rbenv_root }}/shims/ruby"
+  nick: "User"
+- runit_name: "nadoka-system-ruby"
+  host: "nadoka-ccvps.n-z.jp"
+  port: 6697
+  pass: "'{{ ngircd_password }}'"
+  ssl_params: '{ :verify_mode => OpenSSL::SSL::VERIFY_NONE }'
+  ruby_command: "/usr/bin/ruby"
   nick: "User"
