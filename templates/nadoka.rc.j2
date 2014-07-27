@@ -33,11 +33,41 @@ class NADOKA_Config < Nadoka::NDK_ConfigBase
     '{{ nadoka_nadoka }}/plugins',
   ]
 
+  BotConfig = [
+    #:BackLogBot, # strongly recommended
+  ]
+
   BotConfig << {
     :name => :Ponger,
-    :ch => /servers/,
+    :ch => //,
     :pattern => /\Ap[io]ng.?\z/,
     :reply => "pong #{number}",
+    :delay => delay,
+  }
+
+  BotConfig << {
+    :name => :Upgradable,
+    :bot_name => "upgradable #{number}",
+    :ch => //,
+    :pattern => /\Aupgradable\z/,
+    :delay => delay,
+  }
+
+  if File.executable?('/usr/lib/update-notifier/update-motd-reboot-required')
+    BotConfig << {
+      :name => :CatBot,
+      :ch => //,
+      :pattern => /\Aupgradable\z/,
+      :file => "|/usr/lib/update-notifier/update-motd-reboot-required",
+      :delay => delay,
+    }
+  end
+
+  BotConfig << {
+    :name => :CatBot,
+    :ch => //,
+    :pattern => /\Auptime\z/,
+    :file => "|uptime",
     :delay => delay,
   }
 end
