@@ -1,0 +1,2 @@
+---
+- user: name={{ nadoka_user }} comment="Nadoka User" uid={{ nadoka_user_uid }} group={{ nadoka_group }}
