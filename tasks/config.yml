@@ -21,6 +21,10 @@
 - template: src=nadoka.rc.j2 dest=/home/nadoka/{{ item.runit_name }}/nadoka.rc owner={{ nadoka_user }} group={{ nadoka_group }} mode=0644
   with_items: nadoka_rc
 
+# ufw out port
+- ufw: rule=allow direction=out to_port={{ item.port }} proto=tcp
+  with_items: nadoka_rc
+
 # enable nadoka
 - file: state=link path=/etc/service/{{ item.runit_name }} src=/etc/sv/{{ item.runit_name }}
   with_items: nadoka_rc
