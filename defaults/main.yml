@@ -1,31 +1,27 @@
 ---
-# defaults file for znzj.nadoka
+# defaults file for znz.nadoka
 nadoka_root: /opt/nadoka
 nadoka_nadoka: "{{ nadoka_root }}/nadoka"
 nadoka_fprog_plugins: "{{ nadoka_root }}/fprog-nadoka-plugins"
 
 nadoka_packages:
 - git
-- subversion
-- runit
+- ruby
 
 nadoka_user: nadoka
 nadoka_user_uid: 940
 nadoka_group: "{{ nadoka_user }}"
 nadoka_group_gid: "{{ nadoka_user_uid }}"
 
-nadoka_rc:
-- runit_name: "nadoka-rbenv"
-  host: "nadoka-ccvps.n-z.jp"
-  port: 6697
-  pass: "'{{ ngircd_password }}'"
-  ssl_params: '{ :verify_mode => OpenSSL::SSL::VERIFY_NONE }'
-  ruby_command: "{{ rbenv_root }}/shims/ruby"
-  nick: "User"
-- runit_name: "nadoka-system-ruby"
-  host: "nadoka-ccvps.n-z.jp"
-  port: 6697
-  pass: "'{{ ngircd_password }}'"
-  ssl_params: '{ :verify_mode => OpenSSL::SSL::VERIFY_NONE }'
-  ruby_command: "/usr/bin/ruby"
-  nick: "User"
+nadoka_service_name: "nadoka"
+nadoka_irc_host: "ircd.example.net"
+nadoka_irc_port: 6697
+nadoka_irc_pass: "nil"
+nadoka_irc_ssl_params: '{ :verify_mode => OpenSSL::SSL::VERIFY_NONE }'
+nadoka_irc_nick: "User"
+
+nadoka_channel_info: |
+  '#nadoka' => {},
+  '#nadoka_check' => {},
+
+nadoka_ruby_command: "/usr/bin/ruby"

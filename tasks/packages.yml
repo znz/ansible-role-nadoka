@@ -1,2 +1,5 @@
 ---
-- apt: name={{ nadoka_packages | join(",") }}
+- name: "Install packages"
+  apt:
+    name: "{{ item }}"
+  with_items: "{{ nadoka_packages }}"

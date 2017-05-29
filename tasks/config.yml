@@ -1,30 +1,22 @@
 ---
-# runit directories and symlinks
-- file: state=directory path=/etc/sv/{{ item.runit_name }} owner=root group=root mode=0755
-  with_items: nadoka_rc
-- file: state=directory path=/etc/sv/{{ item.runit_name }}/log owner=root group=root mode=0755
-  with_items: nadoka_rc
-- file: state=link path=/etc/sv/{{ item.runit_name }}/supervise src=/var/run/sv.{{ item.runit_name }} force=yes
-  with_items: nadoka_rc
-- file: state=link path=/etc/sv/{{ item.runit_name }}/log/supervise src=/var/run/sv.{{ item.runit_name }}.log force=yes
-  with_items: nadoka_rc
-- copy: src=log-run dest=/etc/sv/{{ item.runit_name }}/log/run owner=root group=root mode=0755
-  with_items: nadoka_rc
+- name: "nadoka rc file"
+  template:
+    src: "nadoka.rc.j2"
+    dest: "{{ nadoka_root }}/{{ nadoka_service_name }}.rc"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  notify: "restart nadoka service"
 
-# run nadoka
-- template: src=run.j2 dest=/etc/sv/{{ item.runit_name }}/run owner=root group=root mode=0755
-  with_items: nadoka_rc
-- file: state=directory path=/home/nadoka/{{ item.runit_name }} owner={{ nadoka_user }} group={{ nadoka_group }} mode=0755
-  with_items: nadoka_rc
-- template: src=run-nadoka.sh.j2 dest=/home/nadoka/{{ item.runit_name }}/run-nadoka.sh owner={{ nadoka_user }} group={{ nadoka_group }} mode=0755
-  with_items: nadoka_rc
-- template: src=nadoka.rc.j2 dest=/home/nadoka/{{ item.runit_name }}/nadoka.rc owner={{ nadoka_user }} group={{ nadoka_group }} mode=0644
-  with_items: nadoka_rc
+- name: "nadoka service file for systemd"
+  template:
+    src: "nadoka.service.j2"
+    dest: "/etc/systemd/system/{{ nadoka_service_name }}.service"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  notify: "restart nadoka service"
 
 # ufw out port
-- ufw: rule=allow direction=out to_port={{ item.port }} proto=tcp
-  with_items: nadoka_rc
-
-# enable nadoka
-- file: state=link path=/etc/service/{{ item.runit_name }} src=/etc/sv/{{ item.runit_name }}
-  with_items: nadoka_rc
+- name: "Allow out to IRC server"
+  ufw: rule=allow direction=out to_port={{ nadoka_irc_port }} proto=tcp

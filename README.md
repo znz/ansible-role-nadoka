@@ -9,19 +9,15 @@ nadoka install to `/opt/nadoka`
 
 ## Role Variables
 
-- `nadoka_user`
-- `nadoka_user_uid`
-- `nadoka_group`
-- `nadoka_group_gid`
-- `nadoka_rc`
+See defaults/main.yml
 
 ## Dependencies
 
-- znzj.rbenv
+None.
 
 ## Example Playbook
 
-See https://github.com/nadoka/ansible-playbook-nadoka-ccvps
+See https://github.com/znz/ansible-playbook-gitlab-dokku
 
 ## License
 

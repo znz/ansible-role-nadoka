@@ -3,10 +3,10 @@ class NADOKA_Config < Nadoka::NDK_ConfigBase
   Client_server_port = nil
   Servers = [
     {
-      :host => '{{ item.host }}',
-      :port => {{ item.port }},
-      :pass => {{ item.pass }},
-      :ssl_params => {{ item.ssl_params }},
+      :host => '{{ nadoka_irc_host }}',
+      :port => {{ nadoka_irc_port }},
+      :pass => {{ nadoka_irc_pass }},
+      :ssl_params => {{ nadoka_irc_ssl_params }},
     },
   ]
 
@@ -16,13 +16,10 @@ class NADOKA_Config < Nadoka::NDK_ConfigBase
   delay /= 10.0 while delay > 10.0
 
   User = "#{Hostname}_#{number}"
-  Nick = {{ item.nick }}
+  Nick = {{ nadoka_irc_nick }}
 
   Channel_info = {
-    '#nadoka' => {
-    },
-    '#nadoka_check' => {
-    },
+{{ nadoka_channel_info }}
   }
 
   require 'tmpdir'

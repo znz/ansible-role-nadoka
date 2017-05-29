@@ -1,0 +1,12 @@
+[Unit]
+Description=Nadoka Daemon
+After=network.target
+
+[Service]
+ExecStart={{ nadoka_ruby_command }} -vd {{ nadoka_nadoka }}/nadoka.rb --rc {{ nadoka_root }}/{{ nadoka_service_name }}.rc
+Restart=always
+User={{ nadoka_user }}
+Group={{ nadoka_group }}
+
+[Install]
+WantedBy=multi-user.target

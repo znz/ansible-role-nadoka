@@ -1,3 +1,11 @@
 ---
-- group: name={{ nadoka_group }} gid={{ nadoka_group_gid }}
-- user: name={{ nadoka_user }} comment="Nadoka User" uid={{ nadoka_user_uid }} group={{ nadoka_group }}
+- name: "Add nadoka group"
+  group:
+    name: "{{ nadoka_group }}"
+    gid: "{{ nadoka_group_gid }}"
+- name: "Add nadoka user"
+  user:
+    name: "{{ nadoka_user }}"
+    comment: "Nadoka User"
+    uid: "{{ nadoka_user_uid }}"
+    group: "{{ nadoka_group }}"
