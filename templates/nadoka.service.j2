@@ -7,6 +7,7 @@ ExecStart={{ nadoka_ruby_command }} -vd {{ nadoka_nadoka }}/nadoka.rb --rc {{ na
 Restart=always
 User={{ nadoka_user }}
 Group={{ nadoka_group }}
+OOMScoreAdjust=1000
 
 [Install]
 WantedBy=multi-user.target
