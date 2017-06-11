@@ -11,11 +11,11 @@ class NADOKA_Config < Nadoka::NDK_ConfigBase
   ]
 
   Hostname = Socket.gethostname
-  number = RUBY_VERSION.delete("^0-9").to_i
+  number = RUBY_VERSION.delete("^0-9")
+  User = "#{Hostname}_#{number}"
+  number = User.delete("^0-9").to_i
   delay = number.to_f
   delay /= 10.0 while delay > 10.0
-
-  User = "#{Hostname}_#{number}"
   Nick = {{ nadoka_irc_nick }}
 
   Channel_info = {
