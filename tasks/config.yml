@@ -4,8 +4,8 @@
     src: "nadoka.rc.j2"
     dest: "{{ nadoka_root }}/{{ nadoka_service_name }}.rc"
     owner: "root"
-    group: "root"
-    mode: 0644
+    group: "nadoka"
+    mode: 0640
   notify: "restart nadoka service"
 
 - name: "nadoka service file for systemd"
