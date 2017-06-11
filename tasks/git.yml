@@ -4,9 +4,9 @@
   git:
     dest: "{{ nadoka_nadoka }}"
     repo: https://github.com/nadoka/nadoka
-  notify: restart nadoka service
+  notify: "Restart nadoka service"
 - name: "Clone fprog nadoka plugins repository"
   git:
     dest: "{{ nadoka_fprog_plugins }}"
     repo: https://github.com/znz/fprog-nadoka-plugins
-  notify: restart nadoka service
+  notify: "Restart nadoka service"

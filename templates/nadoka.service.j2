@@ -1,13 +1,13 @@
 [Unit]
-Description=Nadoka Daemon
+Description=Nadoka Daemon for %I
 After=network.target
 
 [Service]
-ExecStart={{ nadoka_ruby_command }} -vd {{ nadoka_nadoka }}/nadoka.rb --rc {{ nadoka_root }}/{{ nadoka_service_name }}.rc
+ExecStart={{ nadoka_ruby_command }} -vd {{ nadoka_nadoka }}/nadoka.rb --rc {{ nadoka_root }}/%i.rc
 Restart=always
 PrivateTmp=yes
 PermissionsStartOnly=true
-ExecStartPre=/usr/bin/install -o {{ nadoka_user }} -g {{ nadoka_group }} -m 0750 -d /run/nadoka/{{ nadoka_service_name }}
+ExecStartPre=/usr/bin/install -o {{ nadoka_user }} -g {{ nadoka_group }} -m 0750 -d /run/nadoka/%i
 User={{ nadoka_user }}
 Group={{ nadoka_group }}
 OOMScoreAdjust=1000

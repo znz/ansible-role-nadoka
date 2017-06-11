@@ -13,15 +13,15 @@ nadoka_user_uid: 940
 nadoka_group: "{{ nadoka_user }}"
 nadoka_group_gid: "{{ nadoka_user_uid }}"
 
-nadoka_service_name: "nadoka"
-nadoka_irc_host: "ircd.example.net"
-nadoka_irc_port: 6697
-nadoka_irc_pass: "nil"
-nadoka_irc_ssl_params: '{ :verify_mode => OpenSSL::SSL::VERIFY_NONE }'
-nadoka_irc_nick: "User"
-
-nadoka_channel_info: |
-  '#nadoka' => {},
-  '#nadoka_check' => {},
+nadoka:
+- service_name: "nadoka"
+  irc_host: "ircd.example.net"
+  irc_port: 6697
+  irc_pass: "nil"
+  irc_ssl_params: '{ :verify_mode => OpenSSL::SSL::VERIFY_NONE }'
+  irc_nick: "User"
+  channel_info: |
+    '#nadoka' => {},
+    '#nadoka_check' => {},
 
 nadoka_ruby_command: "/usr/bin/ruby"

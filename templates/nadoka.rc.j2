@@ -3,10 +3,10 @@ class NADOKA_Config < Nadoka::NDK_ConfigBase
   Client_server_port = nil
   Servers = [
     {
-      :host => '{{ nadoka_irc_host }}',
-      :port => {{ nadoka_irc_port }},
-      :pass => {{ nadoka_irc_pass }},
-      :ssl_params => {{ nadoka_irc_ssl_params }},
+      :host => '{{ item.irc_host }}',
+      :port => {{ item.irc_port }},
+      :pass => {{ item.irc_pass }},
+      :ssl_params => {{ item.irc_ssl_params }},
     },
   ]
 
@@ -16,10 +16,10 @@ class NADOKA_Config < Nadoka::NDK_ConfigBase
   number = User.delete("^0-9").to_i
   delay = number.to_f
   delay /= 10.0 while delay > 10.0
-  Nick = {{ nadoka_irc_nick }}
+  Nick = {{ item.irc_nick }}
 
   Channel_info = {
-{{ nadoka_channel_info }}
+{{ item.channel_info }}
   }
 
   require 'tmpdir'
@@ -73,7 +73,7 @@ class NADOKA_Config < Nadoka::NDK_ConfigBase
     BotConfig << {
       :name => :DumbBot,
       :channels => [ch],
-      :unixserverpath => File.expand_path("/run/nadoka/{{ nadoka_service_name }}/#{CGI.escape(ch).tr('%','_')}.sock"),
+      :unixserverpath => File.expand_path("/run/nadoka/{{ item.service_name }}/#{CGI.escape(ch).tr('%','_')}.sock"),
       :nkf => '-Wwm0',
       :chmod => 0700,
     }

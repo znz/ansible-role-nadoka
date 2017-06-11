@@ -1,8 +1,9 @@
 ---
 # handlers file for znz.nadoka
-- name: "restart nadoka service"
+- name: "Restart nadoka service"
   systemd:
-    name: "{{ nadoka_service_name }}.service"
+    name: "nadoka@{{ item.service_name }}.service"
     state: restarted
     daemon_reload: yes
     enabled: yes
+  with_items: "{{ nadoka }}"
