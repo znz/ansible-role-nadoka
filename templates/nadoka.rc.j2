@@ -67,4 +67,15 @@ class NADOKA_Config < Nadoka::NDK_ConfigBase
     :file => "|uptime",
     :delay => delay,
   }
+
+  Channel_info.each_key do |ch|
+    require 'cgi'
+    BotConfig << {
+      :name => :DumbBot,
+      :channels => [ch],
+      :unixserverpath => File.expand_path("/run/nadoka/{{ nadoka_service_name }}/#{CGI.escape(ch).tr('%','_')}.sock"),
+      :nkf => '-Wwm0',
+      :chmod => 0700,
+    }
+  end
 end
