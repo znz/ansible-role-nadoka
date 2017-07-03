@@ -78,4 +78,5 @@ class NADOKA_Config < Nadoka::NDK_ConfigBase
       :chmod => 0700,
     }
   end
+{{ item.more_config | default('') }}
 end
