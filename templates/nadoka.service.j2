@@ -8,6 +8,7 @@ Restart=always
 PrivateTmp=yes
 PermissionsStartOnly=true
 ExecStartPre=/usr/bin/install -o {{ nadoka_user }} -g {{ nadoka_group }} -m 0750 -d /run/nadoka/%i
+WorkingDirectory=-/run/nadoka/%i
 User={{ nadoka_user }}
 Group={{ nadoka_group }}
 OOMScoreAdjust=1000
