@@ -13,6 +13,14 @@ nadoka_user_uid: 940
 nadoka_group: "{{ nadoka_user }}"
 nadoka_group_gid: "{{ nadoka_user_uid }}"
 
+nadoka_systemd:
+  Unit:
+    StartLimitIntervalSec: '0'
+  Service:
+    Type: 'notify'
+    WatchdogSec: '5min'
+    RestartSec: '1min'
+
 nadoka:
 - service_name: "nadoka"
   irc_host: "ircd.example.net"

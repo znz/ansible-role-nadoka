@@ -1,10 +1,10 @@
 [Unit]
 Description=Nadoka Daemon for %I
 After=network.target
+StartLimitIntervalSec={{ nadoka_systemd.Unit.StartLimitIntervalSec }}
 
 [Service]
 ExecStart={{ nadoka_ruby_command }} -vd {{ nadoka_nadoka }}/nadoka.rb --rc {{ nadoka_root }}/%i.rc
-Restart=always
 PrivateTmp=yes
 PermissionsStartOnly=true
 ExecStartPre=/usr/bin/install -o {{ nadoka_user }} -g {{ nadoka_group }} -m 0750 -d /run/nadoka/%i
@@ -12,6 +12,10 @@ WorkingDirectory=-/run/nadoka/%i
 User={{ nadoka_user }}
 Group={{ nadoka_group }}
 OOMScoreAdjust=1000
+Type={{ nadoka_systemd.Service.Type }}
+WatchdogSec={{ nadoka_systemd.Service.WatchdogSec }}
+Restart=always
+RestartSec={{ nadoka_systemd.Service.RestartSec }}
 
 [Install]
 WantedBy=multi-user.target
