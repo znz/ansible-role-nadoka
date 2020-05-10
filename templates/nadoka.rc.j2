@@ -74,8 +74,8 @@ class NADOKA_Config < Nadoka::NDK_ConfigBase
       :name => :DumbBot,
       :channels => [ch],
       :unixserverpath => File.expand_path("/run/nadoka/{{ item.service_name }}/#{CGI.escape(ch).tr('%','_')}.sock"),
-      :nkf => '-Wwm0',
-      :chmod => 0700,
+      :nkf => nil,
+      :chmod => 0770,
     }
   end
 {{ item.more_config | default('') }}
