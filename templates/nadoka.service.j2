@@ -1,6 +1,7 @@
 [Unit]
 Description=Nadoka Daemon for %I
-After=network.target
+After=network-online.target nss-lookup.target
+Wants=network-online.target nss-lookup.target
 StartLimitIntervalSec={{ nadoka_systemd.Unit.StartLimitIntervalSec }}
 
 [Service]
