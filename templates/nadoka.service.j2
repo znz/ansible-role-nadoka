@@ -18,6 +18,7 @@ Type={{ nadoka_systemd.Service.Type }}
 WatchdogSec={{ nadoka_systemd.Service.WatchdogSec }}
 Restart=always
 RestartSec={{ nadoka_systemd.Service.RestartSec }}
+Environment='DEBIAN_DISABLE_RUBYGEMS_INTEGRATION=true'
 
 [Install]
 WantedBy=multi-user.target
