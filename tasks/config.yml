@@ -21,5 +21,10 @@
 
 # ufw out port
 - name: "Allow out to IRC server"
-  ufw: rule=allow direction=out to_port={{ item.irc_port }} proto=tcp
+  ufw:
+    rule: allow
+    direction: out
+    to_port: "{{ item.irc_port }}"
+    proto: tcp
+    comment: "nadoka {{ item.service_name }}"
   with_items: "{{ nadoka }}"
