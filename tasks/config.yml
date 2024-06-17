@@ -19,7 +19,11 @@
     mode: 0644
   notify: "Restart nadoka service"
 
+
 # ufw out port
+- name: 'Gather the package facts'
+  ansible.builtin.package_facts:
+    manager: auto
 - name: "Allow out to IRC server"
   ufw:
     rule: allow
@@ -28,3 +32,4 @@
     proto: tcp
     comment: "nadoka {{ item.service_name }}"
   with_items: "{{ nadoka }}"
+  when: '"ufw" in ansible_facts.packages'
