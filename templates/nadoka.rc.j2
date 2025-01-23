@@ -68,6 +68,14 @@ class NADOKA_Config < Nadoka::NDK_ConfigBase
     :delay => delay,
   }
 
+  BotConfig << {
+    :name => :CatBot,
+    :ch => //,
+    :pattern => /\Alsb_release\z/,
+    :file => "|lsb_release -sd",
+    :delay => delay,
+  }
+
   Channel_info.each_key do |ch|
     require 'cgi'
     BotConfig << {
